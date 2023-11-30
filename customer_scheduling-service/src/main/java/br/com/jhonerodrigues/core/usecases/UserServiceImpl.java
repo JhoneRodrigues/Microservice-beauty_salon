@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.jhonerodrigues.adapters.gateways.UserRepository;
 import br.com.jhonerodrigues.core.DTO.UserDTO;
+import br.com.jhonerodrigues.core.domain.User;
+import br.com.jhonerodrigues.core.requests.UserRequest;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -22,6 +24,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDTO findById(Long id) {
 		return repository.findById(id);
+	}
+
+	@Override
+	public User insert(UserRequest request) {
+		return repository.insert(request);
 	}
 
 }

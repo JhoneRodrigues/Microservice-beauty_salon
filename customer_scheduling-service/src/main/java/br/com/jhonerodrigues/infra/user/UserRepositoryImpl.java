@@ -9,6 +9,7 @@ import br.com.jhonerodrigues.adapters.gateways.UserRepository;
 import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.domain.User;
 import br.com.jhonerodrigues.core.domain.exceptions.ResourceNotFoundException;
+import br.com.jhonerodrigues.core.requests.UserRequest;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository{
@@ -30,4 +31,9 @@ public class UserRepositoryImpl implements UserRepository{
 		return dto;
 	}
 
+	@Override
+	public User insert(UserRequest request) {
+		User entity = new User (request);
+		return repository.save(entity);
+	}
 }

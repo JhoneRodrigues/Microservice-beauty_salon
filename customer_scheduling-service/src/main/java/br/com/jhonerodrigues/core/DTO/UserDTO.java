@@ -17,6 +17,7 @@ public class UserDTO {
 	private Long id;
 	private String name;
 	private LocalDate birthday;
+	private String phone;
 	private List<Scheduling> schedulings;
 	
 	public UserDTO(User domain) {

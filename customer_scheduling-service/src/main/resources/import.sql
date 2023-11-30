@@ -1,5 +1,5 @@
-INSERT INTO clients (name, birthday) VALUES ('Jhone', '2004-02-11');
-INSERT INTO clients (name, birthday) VALUES ('Pedro', '2000-10-07');
+INSERT INTO clients (name, birthday, phone) VALUES ('Jhone', '2004-02-11', '(11) 91112-1113');
+INSERT INTO clients (name, birthday, phone) VALUES ('Pedro', '2000-10-07', '(11) 90002-0001');
 
 INSERT INTO schedulings (client_id, moment) VALUES (1, '2023-11-27 12:30:00-00');
 INSERT INTO schedulings (client_id, moment) VALUES (1, '2023-11-30 20:30:00-00');

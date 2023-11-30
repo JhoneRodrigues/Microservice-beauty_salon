@@ -3,6 +3,7 @@ package br.com.jhonerodrigues.core.domain;
 import java.time.LocalDate;
 import java.util.List;
 
+import br.com.jhonerodrigues.core.requests.UserRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +31,7 @@ public class User {
 	private Long id;
 	private String name;
 	private LocalDate birthday;
+	private String phone;
 	
 	@OneToMany (fetch = FetchType.EAGER)
 	@JoinColumn(name = "client_id")	
@@ -40,4 +42,10 @@ public class User {
 		this.name = name;
 		this.birthday = birthday;
 	}	
+	
+	public User (UserRequest request) {
+		this.birthday = request.getBirthday();
+		this.name = request.getName();
+		this.phone = request.getPhone();
+	}
 }
