@@ -3,11 +3,13 @@ package br.com.jhonerodrigues.core.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,15 @@ public class Job {
 	private Double price;
 	private Integer durationMinutes;
 	
-	@OneToMany(mappedBy = "id.job")
-	private Set<jobScheduling> schedulings = new HashSet<>();
+	@JsonIgnore
+	@ManyToMany(mappedBy = "jobs")
+	private Set <Scheduling> schedulings = new HashSet<>();
+
+	public Job(Long id, String name, Double price, Integer durationMinutes) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.durationMinutes = durationMinutes;
+	}
 }

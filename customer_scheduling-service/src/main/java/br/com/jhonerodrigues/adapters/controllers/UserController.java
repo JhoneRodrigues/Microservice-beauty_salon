@@ -13,7 +13,7 @@ import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.usecases.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/clients")
 public class UserController {
 	
 	@Autowired

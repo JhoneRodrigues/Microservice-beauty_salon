@@ -29,5 +29,4 @@ public class JobRepositoryImpl implements JobRepository{
 		        .orElseThrow(() -> new ResourceNotFoundException(id));
 		return dto;
 	}
-
 }
