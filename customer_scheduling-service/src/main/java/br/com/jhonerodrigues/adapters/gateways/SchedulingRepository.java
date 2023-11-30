@@ -7,4 +7,5 @@ import br.com.jhonerodrigues.core.DTO.SchedulingDTO;
 public interface SchedulingRepository {
 	
 	List<SchedulingDTO> findAll();
+	SchedulingDTO findById(Long id);
 }

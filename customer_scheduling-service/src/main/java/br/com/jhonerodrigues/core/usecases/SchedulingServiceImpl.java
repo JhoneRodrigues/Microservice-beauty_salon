@@ -18,4 +18,9 @@ public class SchedulingServiceImpl implements SchedulingService{
 	public List<SchedulingDTO> findAll() {
 		return repository.findAll();
 	}
+
+	@Override
+	public SchedulingDTO findById(Long id) {
+		return repository.findById(id);
+	}
 }
