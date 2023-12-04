@@ -23,5 +23,4 @@ public class JobServiceImpl implements JobService{
 	public JobDTO findById(Long id) {
 		return repository.findById(id);
 	}
-
 }

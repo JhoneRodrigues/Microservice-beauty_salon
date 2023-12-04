@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.com.jhonerodrigues.core.requests.SchedulingRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -42,5 +43,9 @@ public class Scheduling {
 		super();
 		this.id = id;
 		this.moment = moment;
+	}
+	
+	public Scheduling (SchedulingRequest request) {
+		this.moment = request.getMoment();
 	}
 }
