@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.com.jhonerodrigues.adapters.gateways.UserRepository;
 import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.domain.User;
-import br.com.jhonerodrigues.core.domain.exceptions.ResourceNotFoundException;
+import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 import br.com.jhonerodrigues.core.requests.UserRequest;
 
 @Repository

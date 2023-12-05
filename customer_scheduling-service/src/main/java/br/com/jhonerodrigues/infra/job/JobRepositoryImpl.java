@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.com.jhonerodrigues.adapters.gateways.JobRepository;
 import br.com.jhonerodrigues.core.DTO.JobDTO;
 import br.com.jhonerodrigues.core.domain.Job;
-import br.com.jhonerodrigues.core.domain.exceptions.ResourceNotFoundException;
+import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 
 @Repository
 public class JobRepositoryImpl implements JobRepository{

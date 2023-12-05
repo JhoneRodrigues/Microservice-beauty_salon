@@ -13,7 +13,7 @@ import br.com.jhonerodrigues.core.DTO.SchedulingDTO;
 import br.com.jhonerodrigues.core.domain.Job;
 import br.com.jhonerodrigues.core.domain.Scheduling;
 import br.com.jhonerodrigues.core.domain.User;
-import br.com.jhonerodrigues.core.domain.exceptions.ResourceNotFoundException;
+import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 import br.com.jhonerodrigues.core.requests.JobId;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
 import br.com.jhonerodrigues.core.response.SchedulingResponse;

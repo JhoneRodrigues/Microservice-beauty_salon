@@ -1,9 +1,10 @@
 package br.com.jhonerodrigues.core.domain;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,7 +32,8 @@ public class Scheduling {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Instant moment;
+	private LocalDate col_day;
+	private StandardTimes col_time;
 	
 	@ManyToMany (fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_schedulings_jobs", 
@@ -39,13 +41,15 @@ public class Scheduling {
 	inverseJoinColumns = @JoinColumn(name = "job_id"))
 	private Set <Job> jobs = new HashSet<>();
 
-	public Scheduling(Long id, Instant moment) {
+	public Scheduling(Long id, LocalDate day, StandardTimes time) {
 		super();
 		this.id = id;
-		this.moment = moment;
+		this.col_day = day;
+		this.col_time = time;
 	}
 	
 	public Scheduling (SchedulingRequest request) {
-		this.moment = request.getMoment();
+		this.col_day = request.getDay();
+		this.col_time = request.getTime();
 	}
 }
