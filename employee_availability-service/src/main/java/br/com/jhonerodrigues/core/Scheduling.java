@@ -25,7 +25,7 @@ public class Scheduling {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Date day;
-	private StandardTimes time;
+	private Date col_day;
+	private StandardTimes col_time;
 	private String client_phone;
 }
