@@ -2,6 +2,10 @@ package br.com.jhonerodrigues.core.domain;
 
 import java.util.Set;
 
+import org.springframework.beans.BeanUtils;
+
+import br.com.jhonerodrigues.core.DTO.ProfessionalDTO;
+import br.com.jhonerodrigues.core.requests.ProfessionalRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -39,5 +43,15 @@ public class Professional {
 		this.name = name;
 		this.urlImage = urlImage;
 		this.description = description;
+	}
+	
+	public Professional (ProfessionalRequest request) {
+		this.description = request.getDescription();
+		this.name = request.getName();
+		this.urlImage = request.getUrlImage();
+	}
+	
+	public Professional(ProfessionalDTO dto) {
+		BeanUtils.copyProperties(dto, this);
 	}
 }
