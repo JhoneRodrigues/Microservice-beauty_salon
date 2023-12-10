@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.com.jhonerodrigues.adapters.gateways.ProfessionalRepository;
 import br.com.jhonerodrigues.core.DTO.ProfessionalDTO;
 import br.com.jhonerodrigues.core.domain.Professional;
+import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 
 @Repository
 public class ProfessionalRepositoryImpl implements ProfessionalRepository{
@@ -23,7 +24,9 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository{
 
 	@Override
 	public ProfessionalDTO findById(Long id) {
-		Professional entity = repository.findById(id).get();
-		return new ProfessionalDTO(entity);
+		ProfessionalDTO dto = repository.findById(id)
+				.map(ProfessionalDTO::new)
+				.orElseThrow(() -> new ResourceNotFoundException(id));
+		return dto;
 	}
 }

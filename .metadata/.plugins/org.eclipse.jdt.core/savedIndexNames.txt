@@ -72,7 +72,6 @@ INDEX VERSION 1.134+/home/jhone/Projetos/Back-end/EstudoSpring/Microservice - be
 784797418.index
 3024983389.index
 2206114845.index
-692157386.index
 562450564.index
 2657558949.index
 4173845874.index
