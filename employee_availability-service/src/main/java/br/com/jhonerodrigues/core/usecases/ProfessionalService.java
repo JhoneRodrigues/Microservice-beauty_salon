@@ -7,4 +7,5 @@ import br.com.jhonerodrigues.core.DTO.ProfessionalDTO;
 public interface ProfessionalService {
 	
 	List <ProfessionalDTO> findAll();
+	ProfessionalDTO findById(Long id);
 }

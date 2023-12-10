@@ -19,4 +19,9 @@ public class ProfessionalServiceImpl implements ProfessionalService{
 		return repository.findAll();
 	}
 
+	@Override
+	public ProfessionalDTO findById(Long id) {
+		return repository.findById(id);
+	}
+
 }

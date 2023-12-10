@@ -21,4 +21,9 @@ public class ProfessionalRepositoryImpl implements ProfessionalRepository{
 		return list.stream().map(x -> new ProfessionalDTO(x)).toList();
 	}
 
+	@Override
+	public ProfessionalDTO findById(Long id) {
+		Professional entity = repository.findById(id).get();
+		return new ProfessionalDTO(entity);
+	}
 }
