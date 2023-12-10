@@ -2,9 +2,9 @@ package br.com.jhonerodrigues.adapters.gateways;
 
 import java.util.List;
 
-import br.com.jhonerodrigues.core.domain.Professional;
+import br.com.jhonerodrigues.core.DTO.ProfessionalDTO;
 
 public interface ProfessionalRepository {
 	
-	List <Professional> findAll();
+	List <ProfessionalDTO> findAll();
 }

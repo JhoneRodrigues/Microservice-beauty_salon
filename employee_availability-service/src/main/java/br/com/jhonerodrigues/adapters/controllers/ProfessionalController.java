@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jhonerodrigues.core.domain.Professional;
+import br.com.jhonerodrigues.core.DTO.ProfessionalDTO;
 import br.com.jhonerodrigues.core.usecases.ProfessionalService;
 
 @RestController
@@ -19,7 +19,7 @@ public class ProfessionalController {
 	private ProfessionalService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Professional>> findAll (){
+	public ResponseEntity<List<ProfessionalDTO>> findAll (){
 		return ResponseEntity.ok().body(service.findAll());
 	}
 }

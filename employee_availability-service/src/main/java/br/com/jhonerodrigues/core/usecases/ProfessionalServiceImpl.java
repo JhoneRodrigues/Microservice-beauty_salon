@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jhonerodrigues.adapters.gateways.ProfessionalRepository;
-import br.com.jhonerodrigues.core.domain.Professional;
+import br.com.jhonerodrigues.core.DTO.ProfessionalDTO;
 
 @Service
 public class ProfessionalServiceImpl implements ProfessionalService{
@@ -15,7 +15,7 @@ public class ProfessionalServiceImpl implements ProfessionalService{
 	private ProfessionalRepository repository;
 	
 	@Override
-	public List<Professional> findAll() {
+	public List<ProfessionalDTO> findAll() {
 		return repository.findAll();
 	}
 

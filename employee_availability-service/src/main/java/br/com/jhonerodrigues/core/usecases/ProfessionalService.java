@@ -2,9 +2,9 @@ package br.com.jhonerodrigues.core.usecases;
 
 import java.util.List;
 
-import br.com.jhonerodrigues.core.domain.Professional;
+import br.com.jhonerodrigues.core.DTO.ProfessionalDTO;
 
 public interface ProfessionalService {
 	
-	List <Professional> findAll();
+	List <ProfessionalDTO> findAll();
 }
