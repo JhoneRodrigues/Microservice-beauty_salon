@@ -1,7 +1,8 @@
 package br.com.jhonerodrigues.core.domain;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
+import br.com.jhonerodrigues.core.domain.enums.SchedulingStatus;
 import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +26,9 @@ public class Scheduling {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Date col_day;
+	private LocalDate col_day;
 	private StandardTimes col_time;
 	private String client_phone;
+	private String client_name;
+	private SchedulingStatus status;
 }
