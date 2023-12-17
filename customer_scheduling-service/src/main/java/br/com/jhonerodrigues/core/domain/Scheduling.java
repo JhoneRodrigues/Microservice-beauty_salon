@@ -34,6 +34,7 @@ public class Scheduling {
 	private Long id;
 	private LocalDate col_day;
 	private StandardTimes col_time;
+	private Long professional_id;
 	
 	@ManyToMany (fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_schedulings_jobs", 
@@ -51,5 +52,6 @@ public class Scheduling {
 	public Scheduling (SchedulingRequest request) {
 		this.col_day = request.getDay();
 		this.col_time = request.getTime();
+		this.professional_id = request.getProfessional_id();
 	}
 }

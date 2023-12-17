@@ -17,5 +17,6 @@ public class SchedulingRequest {
 	
 	private LocalDate day;
 	private StandardTimes time;
+	private Long professional_id;
 	private List<JobId> jobs;
 }

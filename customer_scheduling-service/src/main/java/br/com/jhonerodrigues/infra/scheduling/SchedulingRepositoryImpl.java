@@ -14,6 +14,7 @@ import br.com.jhonerodrigues.core.domain.Job;
 import br.com.jhonerodrigues.core.domain.Scheduling;
 import br.com.jhonerodrigues.core.domain.User;
 import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
+import br.com.jhonerodrigues.core.mq.SchedulingProducer;
 import br.com.jhonerodrigues.core.requests.JobId;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
 import br.com.jhonerodrigues.core.response.SchedulingResponse;
@@ -31,6 +32,9 @@ public class SchedulingRepositoryImpl implements SchedulingRepository{
 	
 	@Autowired
 	private jpaJobRepository jobRepository;
+	
+	@Autowired
+	private SchedulingProducer schedulingProducer;
 	
 	@Override
 	public List<SchedulingDTO> findAll() {
@@ -56,6 +60,7 @@ public class SchedulingRepositoryImpl implements SchedulingRepository{
                 .map(JobId::getId)
                 .collect(Collectors.toList())));
 		
+		schedulingProducer.sendScheduling(user, scheduling);
 	    updateSchedulingAndUser(user, scheduling, list);
 		return new SchedulingResponse(userRepository.save(user));	
 	}

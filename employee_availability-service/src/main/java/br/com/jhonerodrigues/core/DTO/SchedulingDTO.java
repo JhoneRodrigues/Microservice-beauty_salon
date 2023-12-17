@@ -6,10 +6,11 @@ import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 public class SchedulingDTO {
 	
+	private Long id;
 	private LocalDate col_day;
 	private StandardTimes col_time;
 	private String client_phone;

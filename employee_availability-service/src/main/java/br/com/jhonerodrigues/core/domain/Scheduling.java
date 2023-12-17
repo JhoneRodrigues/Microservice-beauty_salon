@@ -2,8 +2,8 @@ package br.com.jhonerodrigues.core.domain;
 
 import java.time.LocalDate;
 
-import br.com.jhonerodrigues.core.domain.enums.SchedulingStatus;
 import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
+import br.com.jhonerodrigues.core.requests.SchedulingRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,5 +30,11 @@ public class Scheduling {
 	private StandardTimes col_time;
 	private String client_phone;
 	private String client_name;
-	private SchedulingStatus status;
+	
+	public Scheduling (SchedulingRequest request) {
+		this.col_day = request.getCol_day();
+		this.col_time = request.getCol_time();
+		this.client_phone = request.getClient_phone();
+		this.client_name = request.getClient_name();
+	}
 }

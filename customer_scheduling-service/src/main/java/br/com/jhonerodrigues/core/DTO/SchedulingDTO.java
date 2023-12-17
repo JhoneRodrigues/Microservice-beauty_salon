@@ -19,6 +19,7 @@ public class SchedulingDTO {
 	private Long id;
 	private LocalDate col_day;
 	private StandardTimes col_time;
+	private Long professional_id;
 	private Set <Job> jobs = new HashSet<>();
 	
 	public SchedulingDTO(Scheduling domain) {

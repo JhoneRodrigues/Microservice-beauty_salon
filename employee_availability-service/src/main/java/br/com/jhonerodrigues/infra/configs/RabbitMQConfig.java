@@ -7,11 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Configuration
 public class RabbitMQConfig {
 	
-	@Value("${broker.queue.email.name}")
+	@Value("${broker.queue.scheduling.name}")
 	private String queue;
 	
 	@Bean
@@ -22,6 +23,7 @@ public class RabbitMQConfig {
 	@Bean
 	public Jackson2JsonMessageConverter messageConverter() {
 		ObjectMapper objMapper = new ObjectMapper();
+		objMapper.registerModule(new JavaTimeModule());
 		return new Jackson2JsonMessageConverter(objMapper);
 	}
 }
