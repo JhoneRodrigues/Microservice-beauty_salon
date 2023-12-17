@@ -5,17 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import br.com.jhonerodrigues.adapters.gateways.SchedulingRepository;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
+import br.com.jhonerodrigues.core.usecases.SchedulingService;
 
 @Component
 public class Consumer {
 	
 	@Autowired
-	private SchedulingRepository repository;
+	private SchedulingService service;
 	
 	@RabbitListener(queues = "${broker.queue.scheduling.name}")
 	public void listenSchedulingQueue(@Payload SchedulingRequest request) {
-		repository.insert(request);
+		service.insert(request);
 	}
 }
