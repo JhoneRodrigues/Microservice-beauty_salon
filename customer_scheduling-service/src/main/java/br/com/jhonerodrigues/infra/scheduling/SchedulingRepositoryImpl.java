@@ -17,7 +17,6 @@ import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 import br.com.jhonerodrigues.core.mq.SchedulingProducer;
 import br.com.jhonerodrigues.core.requests.JobId;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
-import br.com.jhonerodrigues.core.response.SchedulingResponse;
 import br.com.jhonerodrigues.infra.job.jpaJobRepository;
 import br.com.jhonerodrigues.infra.user.jpaUserRepository;
 
@@ -51,7 +50,7 @@ public class SchedulingRepositoryImpl implements SchedulingRepository{
 	}
 
 	@Override
-	public SchedulingResponse InsertSchedulingByUserId(Long id, SchedulingRequest request) {
+	public SchedulingDTO InsertSchedulingByUserId(Long id, SchedulingRequest request) {
 		
 		User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 		Scheduling scheduling = new Scheduling(request);
@@ -62,7 +61,8 @@ public class SchedulingRepositoryImpl implements SchedulingRepository{
 		
 		schedulingProducer.sendScheduling(user, scheduling);
 	    updateSchedulingAndUser(user, scheduling, list);
-		return new SchedulingResponse(userRepository.save(user));	
+	    userRepository.save(user);
+		return new SchedulingDTO(scheduling);
 	}
 	
 	private void updateSchedulingAndUser(User user, Scheduling scheduling, Set<Job> jobs) {

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jhonerodrigues.core.DTO.SchedulingDTO;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
-import br.com.jhonerodrigues.core.response.SchedulingResponse;
 import br.com.jhonerodrigues.core.usecases.SchedulingService;
 
 @RestController
@@ -36,7 +35,7 @@ public class SchedulingController {
 	}
 
 	@PutMapping("/{id}/insertion")
-	public ResponseEntity<SchedulingResponse> insertSchedulingByUserId(
+	public ResponseEntity<SchedulingDTO> insertSchedulingByUserId(
 			@PathVariable Long id,
 			@RequestBody SchedulingRequest request) {
 		var obj = service.InsertSchedulingByUserId(id, request);
