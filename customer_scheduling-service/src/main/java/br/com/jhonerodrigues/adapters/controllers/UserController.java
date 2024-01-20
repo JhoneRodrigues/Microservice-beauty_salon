@@ -37,9 +37,8 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<UserDTO> insert (@RequestBody UserRequest request){
-		var obj = service.insert(request);
-		var dto = new UserDTO(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		var dto = service.insert(request);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 }

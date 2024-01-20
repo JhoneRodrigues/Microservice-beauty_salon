@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.jhonerodrigues.adapters.gateways.JobRepository;
-import br.com.jhonerodrigues.core.DTO.JobDTO;
 import br.com.jhonerodrigues.core.domain.Job;
 import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 
@@ -17,16 +16,13 @@ public class JobRepositoryImpl implements JobRepository{
 	private jpaJobRepository repository;
 
 	@Override
-	public List<JobDTO> findAll() {
-		List <Job> result= repository.findAll();
-		return result.stream().map(x -> new JobDTO(x)).toList();
+	public List<Job> findAll() {
+		return repository.findAll();
 	}
 
 	@Override
-	public JobDTO findById(Long id) {
-		JobDTO dto = repository.findById(id)
-		        .map(JobDTO::new)
-		        .orElseThrow(() -> new ResourceNotFoundException(id));
-		return dto;
+	public Job findById(Long id) {
+		return repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 }

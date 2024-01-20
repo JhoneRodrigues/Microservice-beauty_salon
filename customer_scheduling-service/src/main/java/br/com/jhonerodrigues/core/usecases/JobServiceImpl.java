@@ -16,11 +16,12 @@ public class JobServiceImpl implements JobService{
 
 	@Override
 	public List<JobDTO> findAll() {
-		return repository.findAll();
+		var result = repository.findAll();
+		return result.stream().map(x -> new JobDTO(x)).toList();
 	}
 
 	@Override
 	public JobDTO findById(Long id) {
-		return repository.findById(id);
+		return new JobDTO (repository.findById(id));
 	}
 }

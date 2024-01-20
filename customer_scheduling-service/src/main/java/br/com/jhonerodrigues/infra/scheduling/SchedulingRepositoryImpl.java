@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.jhonerodrigues.adapters.gateways.SchedulingRepository;
-import br.com.jhonerodrigues.core.DTO.SchedulingDTO;
 import br.com.jhonerodrigues.core.domain.Job;
 import br.com.jhonerodrigues.core.domain.Scheduling;
 import br.com.jhonerodrigues.core.domain.User;
@@ -36,21 +35,18 @@ public class SchedulingRepositoryImpl implements SchedulingRepository{
 	private SchedulingProducer schedulingProducer;
 	
 	@Override
-	public List<SchedulingDTO> findAll() {
-		List <Scheduling> result= schedulingRepository.findAll();
-		return result.stream().map(x -> new SchedulingDTO(x)).toList();
+	public List<Scheduling> findAll() {
+		return schedulingRepository.findAll();
 	}
 	
 	@Override
-	public SchedulingDTO findById(Long id) {
-		SchedulingDTO dto = schedulingRepository.findById(id)
-				.map(SchedulingDTO::new)
-				.orElseThrow(() -> new ResourceNotFoundException(id));
-		return dto;
+	public Scheduling findById(Long id) {
+		return schedulingRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+		 
 	}
 
 	@Override
-	public SchedulingDTO InsertSchedulingByUserId(Long id, SchedulingRequest request) {
+	public Scheduling InsertSchedulingByUserId(Long id, SchedulingRequest request) {
 		
 		User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 		Scheduling scheduling = new Scheduling(request);
@@ -62,7 +58,7 @@ public class SchedulingRepositoryImpl implements SchedulingRepository{
 		schedulingProducer.sendScheduling(user, scheduling);
 	    updateSchedulingAndUser(user, scheduling, list);
 	    userRepository.save(user);
-		return new SchedulingDTO(scheduling);
+		return scheduling;
 	}
 	
 	private void updateSchedulingAndUser(User user, Scheduling scheduling, Set<Job> jobs) {

@@ -17,16 +17,17 @@ public class SchedulingServiceImpl implements SchedulingService{
 
 	@Override
 	public List<SchedulingDTO> findAll() {
-		return repository.findAll();
+		var result = repository.findAll();
+		return result.stream().map(x -> new SchedulingDTO(x)).toList();
 	}
 
 	@Override
 	public SchedulingDTO findById(Long id) {
-		return repository.findById(id);
+		return new SchedulingDTO (repository.findById(id));
 	}
 
 	@Override
 	public SchedulingDTO InsertSchedulingByUserId(Long id, SchedulingRequest request) {
-		return repository.InsertSchedulingByUserId(id, request);
+		return new SchedulingDTO (repository.InsertSchedulingByUserId(id, request));
 	}
 }
