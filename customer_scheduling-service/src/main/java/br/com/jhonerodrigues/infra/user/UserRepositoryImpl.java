@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import br.com.jhonerodrigues.adapters.gateways.UserRepository;
 import br.com.jhonerodrigues.core.domain.User;
 import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
-import br.com.jhonerodrigues.core.requests.UserRequest;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository{
@@ -28,7 +27,21 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@Override
-	public User insert(UserRequest request) {
-		return repository.save(new User (request));
+	public User insert(User user) {
+		return repository.save(user);
+	}
+
+	@Override
+	public User update(Long id, User obj) {
+		var entity = findById(id);
+		return repository.save(updateData(entity, obj));
+	}
+	
+	private User updateData(User entity, User obj) {
+		entity.setBirthday(obj.getBirthday());
+		entity.setName(obj.getName());
+		entity.setPhone(obj.getPhone());
+		entity.setSchedulings(obj.getSchedulings());
+		return entity;
 	}
 }

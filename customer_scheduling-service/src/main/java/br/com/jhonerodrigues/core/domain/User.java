@@ -3,6 +3,9 @@ package br.com.jhonerodrigues.core.domain;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+
+import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.requests.UserRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -44,8 +47,12 @@ public class User {
 	}	
 	
 	public User (UserRequest request) {
-		this.birthday = request.getBirthday();
 		this.name = request.getName();
+		this.birthday = request.getBirthday();
 		this.phone = request.getPhone();
+	}
+
+	public User(UserDTO dto) {
+		BeanUtils.copyProperties(dto, this);
 	}
 }
