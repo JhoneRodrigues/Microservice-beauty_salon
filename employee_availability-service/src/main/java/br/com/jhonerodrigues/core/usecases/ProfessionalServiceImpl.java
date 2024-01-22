@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jhonerodrigues.adapters.gateways.ProfessionalRepository;
 import br.com.jhonerodrigues.core.DTO.ProfessionalDTO;
+import br.com.jhonerodrigues.core.domain.Professional;
 import br.com.jhonerodrigues.core.requests.ProfessionalRequest;
 
 @Service
@@ -17,21 +18,21 @@ public class ProfessionalServiceImpl implements ProfessionalService{
 	
 	@Override
 	public List<ProfessionalDTO> findAll() {
-		return repository.findAll();
+		return repository.findAll().stream().map(x -> new ProfessionalDTO(x)).toList();
 	}
 
 	@Override
 	public ProfessionalDTO findById(Long id) {
-		return repository.findById(id);
+		return new ProfessionalDTO (repository.findById(id));
 	}
 
 	@Override
 	public ProfessionalDTO insert(ProfessionalRequest request) {
-		return repository.insert(request);
+		return new ProfessionalDTO (repository.insert(new Professional (request)));
 	}
 
 	@Override
 	public ProfessionalDTO update(Long id, ProfessionalRequest request) {
-		return repository.update(id, request);
+		return new ProfessionalDTO (repository.update(id, new Professional (request)));
 	}
 }

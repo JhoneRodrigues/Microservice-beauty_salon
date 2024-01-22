@@ -2,6 +2,8 @@ package br.com.jhonerodrigues.core.domain;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.BeanUtils;
+
 import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
 import jakarta.persistence.Entity;
@@ -30,11 +32,9 @@ public class Scheduling {
 	private StandardTimes col_time;
 	private String client_phone;
 	private String client_name;
+	private Long professional_id;
 	
 	public Scheduling (SchedulingRequest request) {
-		this.col_day = request.getCol_day();
-		this.col_time = request.getCol_time();
-		this.client_phone = request.getClient_phone();
-		this.client_name = request.getClient_name();
+		BeanUtils.copyProperties(request, this);
 	}
 }
