@@ -18,4 +18,12 @@ public class ExceptionHandler {
 		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
+	
+	@org.springframework.web.bind.annotation.ExceptionHandler(DataIntegratyViolationException.class)
+	public ResponseEntity<StandardError> dataIntegratyViolation(DataIntegratyViolationException e, HttpServletRequest request) {
+		String error = "The phone is already registered";
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}
 }

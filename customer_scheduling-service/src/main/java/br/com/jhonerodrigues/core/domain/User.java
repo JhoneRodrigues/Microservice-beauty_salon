@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 
 import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.requests.UserRequest;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -34,16 +35,19 @@ public class User {
 	private Long id;
 	private String name;
 	private LocalDate birthday;
+	
+	@Column(unique = true)
 	private String phone;
 	
 	@OneToMany (fetch = FetchType.EAGER)
 	@JoinColumn(name = "client_id")	
 	private List <Scheduling> schedulings;
 
-	public User(Long id, String name, LocalDate birthday) {
+	public User(Long id, String name, LocalDate birthday, String phone) {
 		this.id = id;
 		this.name = name;
 		this.birthday = birthday;
+		this.phone = phone;
 	}	
 	
 	public User (UserRequest request) {

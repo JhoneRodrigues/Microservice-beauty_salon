@@ -8,4 +8,5 @@ public interface JobRepository {
 	
 	List<Job> findAll();
 	Job findById(Long id);
+	void insert(Job job);
 }

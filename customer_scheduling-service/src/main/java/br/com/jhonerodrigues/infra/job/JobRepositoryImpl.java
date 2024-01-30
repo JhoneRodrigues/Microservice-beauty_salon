@@ -25,4 +25,9 @@ public class JobRepositoryImpl implements JobRepository{
 		return repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
+
+	@Override
+	public void insert(Job job) {
+		repository.save(job);
+	}
 }
