@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -66,8 +67,15 @@ class UserServiceImplTest {
 	}
 	
 	@Test
-	void testFindAll() {
+	void FindAllThenReturnAnListOfUsersDTO() {
+		when(repository.findAll()).thenReturn(List.of(user));
 		
+		List<UserDTO> response = service.findAll();
+		
+		assertNotNull(response);
+		assertEquals(1, response.size());
+		assertEquals(UserDTO.class, response.get(0).getClass());
+		assertEquals(PHONE, response.get(0).getPhone());
 	}
 
 	@Test
