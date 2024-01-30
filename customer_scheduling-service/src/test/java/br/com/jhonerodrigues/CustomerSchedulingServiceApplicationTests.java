@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class CustomerSchedulingServiceApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void main() {
+		CustomerSchedulingServiceApplication.main(new String[] {});
 	}
 
 }
