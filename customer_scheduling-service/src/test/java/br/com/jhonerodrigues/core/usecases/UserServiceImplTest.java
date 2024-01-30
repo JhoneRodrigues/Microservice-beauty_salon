@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.domain.User;
+import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 import br.com.jhonerodrigues.infra.user.UserRepositoryImpl;
 
 @SpringBootTest
@@ -40,14 +41,9 @@ class UserServiceImplTest {
 		MockitoAnnotations.openMocks(this);
 		startUser();
 	}
-	
-	@Test
-	void testFindAll() {
-		
-	}
 
 	@Test
-	void testFindById() {
+	void whenFindByIdThenReturnAnUserInstance() {
 		when(repository.findById(anyLong())).thenReturn(user);
 		
 		UserDTO response = service.findById(ID);
@@ -56,6 +52,22 @@ class UserServiceImplTest {
 		assertEquals(UserDTO.class, response.getClass());
 		assertEquals(ID, response.getId());
 		assertEquals(PHONE, response.getPhone());
+	}
+	
+	@Test
+	void whenFindByIdThenReturnAnResourceNotFoundException() {
+		when(repository.findById(anyLong())).thenThrow(new ResourceNotFoundException(ID));
+		
+		try {
+			service.findById(ID);
+		} catch(Exception ex) {
+			assertEquals(ResourceNotFoundException.class, ex.getClass());
+		}
+	}
+	
+	@Test
+	void testFindAll() {
+		
 	}
 
 	@Test
