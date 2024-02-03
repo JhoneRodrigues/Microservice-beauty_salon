@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import br.com.jhonerodrigues.adapters.gateways.UserRepository;
 import br.com.jhonerodrigues.core.domain.User;
-import br.com.jhonerodrigues.core.exceptions.DataIntegratyViolationException;
 import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 
 @Repository
@@ -30,7 +29,6 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public User insert(User user) {
-		findByEmail(user);
 		return repository.save(user);
 	}
 
@@ -48,8 +46,8 @@ public class UserRepositoryImpl implements UserRepository{
 		return entity;
 	}
 	
-	private void findByEmail (User entity) {
-		Optional<User> user = repository.findByPhone(entity.getPhone());
-		if(user.isPresent()) throw new DataIntegratyViolationException(entity.getPhone());
+	@Override
+	public Optional<User> findByPhone (String phone) {
+		return repository.findByPhone(phone);	
 	}
 }
