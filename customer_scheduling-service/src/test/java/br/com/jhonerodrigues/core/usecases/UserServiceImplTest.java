@@ -111,8 +111,27 @@ class UserServiceImplTest {
 	}
 
 	@Test
-	void testUpdate() {
+	void UpdateThenReturnSuccess() {
+		when(repository.update(anyLong(),any())).thenReturn(user);
 		
+		UserDTO response = service.update(ID,user);
+		
+		assertNotNull(response);
+		assertEquals(UserDTO.class, response.getClass());
+		assertEquals(ID, response.getId());
+		assertEquals(PHONE, response.getPhone());
+	}
+	
+	@Test
+	void UpdateThenReturnAnDataIntegrityViolationException() {
+		when(repository.findByPhone(anyString())).thenReturn(optionalUser);
+		
+		try {
+			optionalUser.get().setId(2L);
+			service.update(ID,user);
+		} catch(Exception ex) {
+			assertEquals(DataIntegratyViolationException.class, ex.getClass());
+		}
 	}
 	
 	private void startUser() {

@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDTO update(Long id, User user) {
+		findByPhone(user);
 		return new UserDTO (repository.update(id, user));
 	}
 	
