@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 
 import br.com.jhonerodrigues.adapters.gateways.SchedulingRepository;
 import br.com.jhonerodrigues.core.DTO.SchedulingDTO;
+import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.domain.Scheduling;
 import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
 import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
@@ -41,7 +43,15 @@ class SchedulingServiceImplTest {
 	}
 
 	@Test
-	void testFindAll() {
+	void FindAllThenReturnAnListOfUsersDTO() {
+		when(repository.findAll()).thenReturn(List.of(scheduling));
+		
+		List<SchedulingDTO> response = schedulingService.findAll();
+		
+		assertNotNull(response);
+		assertEquals(1, response.size());
+		assertEquals(SchedulingDTO.class, response.get(0).getClass());
+		assertEquals(DATE, response.get(0).getCol_day());
 	}
 
 	@Test
