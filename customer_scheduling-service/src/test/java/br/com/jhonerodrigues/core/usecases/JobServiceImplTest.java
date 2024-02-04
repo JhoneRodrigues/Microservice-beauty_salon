@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -25,6 +27,9 @@ class JobServiceImplTest {
 
 	@InjectMocks
 	private JobServiceImpl service;
+	
+	@Mock
+	private JobRepository repository;
 
 	private JobDTO jobDTO;
 	private Job job;
@@ -35,12 +40,16 @@ class JobServiceImplTest {
 		startUser();
 	}
 
-	@Mock
-	private JobRepository repository;
-
 	@Test
-	void testFindAll() {
-
+	void FindAllThenReturnAnListOfJobsDTO() {
+		when(repository.findAll()).thenReturn(List.of(job));
+		
+		List<JobDTO> response = service.findAll();
+		
+		assertNotNull(response);
+		assertEquals(1, response.size());
+		assertEquals(JobDTO.class, response.get(0).getClass());
+		assertEquals(NAME, response.get(0).getName());
 	}
 
 	@Test
