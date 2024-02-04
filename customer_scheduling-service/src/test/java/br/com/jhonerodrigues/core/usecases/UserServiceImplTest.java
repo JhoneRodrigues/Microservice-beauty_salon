@@ -13,18 +13,17 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.DataValidationException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import br.com.jhonerodrigues.adapters.gateways.UserRepository;
 import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.domain.User;
 import br.com.jhonerodrigues.core.exceptions.DataIntegratyViolationException;
 import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 import br.com.jhonerodrigues.core.requests.UserRequest;
-import br.com.jhonerodrigues.infra.user.UserRepositoryImpl;
 
 @SpringBootTest
 class UserServiceImplTest {
@@ -38,7 +37,7 @@ class UserServiceImplTest {
 	private UserServiceImpl service;
 
 	@Mock
-	private UserRepositoryImpl repository;
+	private UserRepository repository;
 	
 	private User user;
 	private UserDTO userDTO;
