@@ -42,11 +42,12 @@ public class Scheduling {
 	inverseJoinColumns = @JoinColumn(name = "job_id"))
 	private Set <Job> jobs = new HashSet<>();
 
-	public Scheduling(Long id, LocalDate day, StandardTimes time) {
+	public Scheduling(Long id, LocalDate day, StandardTimes time, Long professionalId) {
 		super();
 		this.id = id;
 		this.col_day = day;
 		this.col_time = time;
+		this.professional_id = professionalId;
 	}
 	
 	public Scheduling (SchedulingRequest request) {

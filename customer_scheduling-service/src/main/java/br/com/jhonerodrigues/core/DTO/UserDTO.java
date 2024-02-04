@@ -1,6 +1,7 @@
 package br.com.jhonerodrigues.core.DTO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -20,7 +21,7 @@ public class UserDTO {
 	private String name;
 	private LocalDate birthday;
 	private String phone;
-	private List<Scheduling> schedulings;
+	private List<Scheduling> schedulings = new ArrayList<>(); 
 	
 	public UserDTO(Long id, String name, LocalDate birthday, String phone) {
 		super();
