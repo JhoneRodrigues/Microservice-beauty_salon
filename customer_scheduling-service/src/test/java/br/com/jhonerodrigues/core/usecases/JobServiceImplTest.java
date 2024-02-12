@@ -12,12 +12,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.jhonerodrigues.adapters.gateways.JobRepository;
 import br.com.jhonerodrigues.core.DTO.JobDTO;
 import br.com.jhonerodrigues.core.domain.Job;
 import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 
+@SpringBootTest
 class JobServiceImplTest {
 
 	private static final int DURATION = 40;
