@@ -2,6 +2,7 @@ package br.com.jhonerodrigues.adapters.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -15,11 +16,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
 import br.com.jhonerodrigues.core.DTO.JobDTO;
+import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 import br.com.jhonerodrigues.core.usecases.JobService;
 
 @SpringBootTest
 class JobControllerTest {
 	
+	private static final long ID = 1L;
+
 	@InjectMocks
 	private JobController controller;
 	
@@ -35,7 +39,7 @@ class JobControllerTest {
 	}
 
 	@Test
-	void findAllThenReturnAnListOfJobDTO() {
+	void FindAllThenReturnAnListOfJobDTO() {
 		when(service.findAll()).thenReturn(List.of(dto));
 		
 		ResponseEntity<List <JobDTO>> response = controller.findAll();
@@ -47,11 +51,29 @@ class JobControllerTest {
 	}
 
 	@Test
-	void testFindById() {
+	void FindByIdThenReturnAnJobDTO() {
+		when(service.findById(anyLong())).thenReturn(dto);
 		
+		ResponseEntity<JobDTO> response = controller.findById(ID);
+		
+		assertNotNull(response);
+		assertEquals(JobDTO.class, response.getBody().getClass());
+		assertEquals(dto.getId(), ID);
+		assertEquals(dto.getName(), response.getBody().getName());
+	}
+	
+	@Test
+	void FindByIdThenReturnAnResourceNotFoundException() {
+		when(service.findById(anyLong())).thenThrow(new ResourceNotFoundException(ID));
+		
+		try {
+			controller.findById(ID);
+		} catch (Exception e){
+			assertEquals(ResourceNotFoundException.class, e.getClass());
+		}
 	}
 
 	private void startUser() {
-		dto = new JobDTO(1L, "Corte", 30.00, 40);
+		dto = new JobDTO(ID, "Corte", 30.00, 40);
 	}
 }
