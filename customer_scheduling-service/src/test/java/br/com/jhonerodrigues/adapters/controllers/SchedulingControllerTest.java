@@ -2,6 +2,7 @@ package br.com.jhonerodrigues.adapters.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -17,7 +18,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
 import br.com.jhonerodrigues.core.DTO.SchedulingDTO;
-import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
 import br.com.jhonerodrigues.core.usecases.SchedulingService;
@@ -46,7 +46,7 @@ class SchedulingControllerTest {
 	}
 
 	@Test
-	void FindAllThenReturnAnListOfSchedulingsDTO() {
+	void FindAllThenReturnAnListOfSchedulingDTO() {
 		when(service.findAll()).thenReturn(List.of(dto));
 		
 		ResponseEntity<List<SchedulingDTO>> response = controller.findAll();
@@ -59,7 +59,7 @@ class SchedulingControllerTest {
 	}
 
 	@Test
-	void FindByIdThenReturnAnSchedulingsDTO() {
+	void FindByIdThenReturnAnSchedulingDTO() {
 		when(service.findById(anyLong())).thenReturn(dto);
 		
 		ResponseEntity<SchedulingDTO> response = controller.findById(ID);
@@ -72,7 +72,16 @@ class SchedulingControllerTest {
 	}
 
 	@Test
-	void testInsertSchedulingByUserId() {
+	void InsertSchedulingByUserIdThenReturnAnSchedulingDTO() {
+		when(service.InsertSchedulingByUserId(anyLong(), any())).thenReturn(dto);
+		
+		ResponseEntity<SchedulingDTO> response = controller.insertSchedulingByUserId(ID, request);
+		
+		assertNotNull(response);
+		assertEquals(response.getBody().getClass(), SchedulingDTO.class);
+		assertEquals(response.getBody().getId(), ID);
+		assertEquals(response.getBody().getCol_day(), DAY);
+		assertEquals(response.getBody().getCol_time(), TIME);
 	}
 
 	private void startUser() {
