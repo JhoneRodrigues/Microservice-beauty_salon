@@ -9,11 +9,13 @@ import org.springframework.beans.BeanUtils;
 import br.com.jhonerodrigues.core.domain.Job;
 import br.com.jhonerodrigues.core.domain.Scheduling;
 import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class SchedulingDTO {
 
 	private Long id;

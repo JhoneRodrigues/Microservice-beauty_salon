@@ -17,7 +17,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
-import br.com.jhonerodrigues.core.DTO.JobDTO;
 import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.requests.UserRequest;
 import br.com.jhonerodrigues.core.usecases.UserService;
