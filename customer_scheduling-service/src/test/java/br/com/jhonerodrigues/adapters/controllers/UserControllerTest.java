@@ -2,6 +2,7 @@ package br.com.jhonerodrigues.adapters.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -51,7 +52,15 @@ class UserControllerTest {
 	}
 
 	@Test
-	void testFindById() {
+	void FindByIdThenReturnAnUserDTO() {
+		when(service.findById(anyLong())).thenReturn(dto);
+		
+		ResponseEntity<UserDTO> response = controller.findById(ID);
+		
+		assertNotNull(response);
+		assertEquals(response.getBody().getClass(), UserDTO.class);
+		assertEquals(response.getBody().getId(), ID);
+		assertEquals(response.getBody().getPhone(), dto.getPhone());
 	}
 
 	@Test
