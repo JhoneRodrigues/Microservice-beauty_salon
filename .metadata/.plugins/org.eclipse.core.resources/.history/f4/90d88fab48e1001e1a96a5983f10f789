@@ -1,0 +1,8 @@
+package br.com.jhonerodrigues.core.mq;
+
+public record constQueue(String name) {
+	
+	public constQueue() {
+		this.name = "SCHEDULING";
+	}
+}

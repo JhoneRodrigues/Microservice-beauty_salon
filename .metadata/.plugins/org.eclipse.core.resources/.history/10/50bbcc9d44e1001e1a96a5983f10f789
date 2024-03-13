@@ -1,0 +1,5 @@
+package br.com.jhonerodrigues.infra.configs;
+
+public class RabbitMQConection {
+
+}

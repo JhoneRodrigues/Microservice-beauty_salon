@@ -1,0 +1,6 @@
+package br.com.jhonerodrigues.core.mq;
+
+public class constQueue() {
+	
+	public static final QUEUE = 
+}
