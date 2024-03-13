@@ -58,12 +58,14 @@ public class SchedulingServiceImpl implements SchedulingService{
 		
 		var scheduling = new Scheduling(request);
 		scheduling.setJobs(jobs);
-		scheduling = repository.insert(scheduling);
+		
 		
 //		Atualizando a lista de agendamentos no usuario
 		User user = new User(userService.findById(id));
 		user.getSchedulings().add(scheduling);
+		
 		userService.update(id, user);
+		scheduling = repository.insert(scheduling);
 		
 //		Envio da mensagem para o outro serviço
 		producer.sendScheduling(user, scheduling);

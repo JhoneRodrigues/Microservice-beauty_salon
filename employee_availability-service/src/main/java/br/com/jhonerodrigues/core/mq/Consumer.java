@@ -14,7 +14,7 @@ public class Consumer {
 	@Autowired
 	private SchedulingService service;
 	
-	@RabbitListener(queues = "${broker.queue.scheduling.name}")
+	@RabbitListener(queues = constQueue.QUEUE_NAME)
 	public void listenSchedulingQueue(@Payload SchedulingRequest request) {
 		service.insert(request);
 	}

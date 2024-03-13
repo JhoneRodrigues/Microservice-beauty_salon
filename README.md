@@ -1,31 +1,27 @@
 # Microservice - beauty salon
 <h3 style="color:blue"> Status: Em desenvolvimento</h3>
 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/JhoneRodrigues/chess-system-java/blob/main/LICENSE) 
+### 1 - O que é?
+Serviços (APIs) conectados para automatizar a vizualização e cadastro de agendamentos de um salão. Recebendo o pedido de agendamento do cliente (custumer) e enviando para o serviço de disponibilidade dos funcionários (employee), populando ambos os dados em uma única requisição.
 
-## Sobre o projeto
+### 2 - Objetivo
+Este projeto esta em desenvolvimento para fins didáticos, estudando a arquitetura de microsserviços e mensageria pretendo antes de salvar um agendamento, verificar se o profissional possui a disponibilidade para o mesmo. Ou seja, o serviço cliente deve enviar uma mensagem e esperar uma resposta, para assim, executar o cadastro do agendamento ou informar que não foi possível devido a indisponibilidade do profissional.
 
-O objetivo deste projeto é estudar e praticar o desenvolvimento de microserviço utilizando o cenário de um salão de beleza. O microserviço consiste em dois serviços: um para clientes e outro para profissionais. A meta é facilitar a comunicação entre eles, automatizando a manipulação do banco de dados de agendamentos do cliente e disponibilidade de cada profissional.
-
-### Design de software
-Implementado com a <strong>Clean Architecture</strong>, estruturada para isolar qualquer dependência com o banco de dados. Utiliza a implementação de interfaces nas três camadas principais: Core, Adapter e Infrastructure.
-
-## Tecnologias utilizadas
+### 3 - Tecnologias utilizadas
 <ul>
   <li>Java</li>
   <li>Spring Boot</li>
   <li>JPA / Hibernate</li>
-  <li>Lombok</li>
+  <li>JUnit</li>
+  <li>RabbitMQ</li>
   <li>Maven</li>
   <li>PostgreSQL</li>
+  <li>H2 Database</li>
+  <li>Lombok</li>
 </ul>
 
-## Autor
-<h4>Jhone Costa Rodrigues</h4>
-<section>  
-  <div> 
-    <a href="https://www.linkedin.com/in/jhone-rodrigues-79a080234/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank" title="Linkedin: Jhone Rodrigues"></a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <a href = "mailto:jhonecosta30@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank" title="E-mail: jhonecosta30@gmail.com"></a>
-  </div>
-</section>
+## <b> Vamos nos conectar..!</b><img src="https://github.com/0xAbdulKhalid/0xAbdulKhalid/raw/main/assets/mdImages/handshake.gif" width ="80">
+<a href="https://www.linkedin.com/in/jhonerodrigues/" target="_blank">
+<img src="https://img.shields.io/badge/linkedin:  jhone rodrigues-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white" alt=linkedin style="margin-bottom: 5px;"/>
+</a>
+

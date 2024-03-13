@@ -2,7 +2,6 @@ package br.com.jhonerodrigues.core.mq;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import br.com.jhonerodrigues.core.DTO.SchedulingDTOForMessage;
@@ -15,8 +14,7 @@ public class SchedulingProducer {
 	@Autowired
 	private RabbitTemplate template;
 	
-	@Value(value = "${broker.queue.scheduling.name}")
-	private String rountingKey;
+	private String rountingKey = constQueue.QUEUE_NAME;
 	
 	public void sendScheduling(User user, Scheduling scheduling) {
 		var schedulingDTO = new SchedulingDTOForMessage();
