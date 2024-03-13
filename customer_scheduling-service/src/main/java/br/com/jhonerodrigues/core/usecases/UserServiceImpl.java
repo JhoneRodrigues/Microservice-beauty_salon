@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService{
 	
 	private void findByPhone (User obj) {
 		Optional<User> user = repository.findByPhone(obj.getPhone());
-		if (user.isPresent()){
+		if (user.isPresent() && user.get().getId() != obj.getId()){
 			throw new DataIntegratyViolationException(obj.getPhone());
 		}
 	}	
