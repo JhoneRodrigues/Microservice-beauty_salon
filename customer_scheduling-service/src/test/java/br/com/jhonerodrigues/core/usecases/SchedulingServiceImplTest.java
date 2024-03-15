@@ -129,20 +129,20 @@ class SchedulingServiceImplTest {
 		SchedulingDTO response = schedulingService.InsertSchedulingByUserId(USER_ID, schedulingRequest);
 		
 		assertNotNull(response);
-		assertEquals(SchedulingDTO.class, response.getClass());
-		assertEquals(SCHED_ID, response.getId());
-		assertEquals(DATE, response.getCol_day());
-		
 		assertNotNull(response.getJobs());
+
+		assertEquals(SchedulingDTO.class, response.getClass());
 		assertEquals(response.getJobs().size(), 1);
+		assertEquals(SCHED_ID, response.getId());
+		assertEquals(USER_ID, response.getClient_id());
+		assertEquals(DATE, response.getCol_day());		
 	}
 	
 	private void startUser() {
-		job = new Job(JOB_ID, JOB_NAME, JOB_PRICE, JOB_DURATION);
-		jobDTO = new JobDTO(job);
+		jobDTO = new JobDTO(JOB_ID, JOB_NAME, JOB_PRICE, JOB_DURATION);
 		jobId = new JobId(JOB_ID);
 		
-		scheduling = new Scheduling(SCHED_ID, DATE, TIME, PROF_ID);
+		scheduling = new Scheduling(SCHED_ID, DATE, TIME, PROF_ID, USER_ID);
 		scheduling.getJobs().add(job);
 		
 		schedulingDTO = new SchedulingDTO(scheduling);
