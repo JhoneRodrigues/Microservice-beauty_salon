@@ -1,8 +1,0 @@
-package br.com.jhonerodrigues.core.mq;
-
-public class constQueue() {
-	
-	public constQueue() {
-		this.name = "SCHEDULING";
-	}
-}

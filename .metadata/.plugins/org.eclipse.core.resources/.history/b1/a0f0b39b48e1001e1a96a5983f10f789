@@ -1,5 +1,0 @@
-package br.com.jhonerodrigues.core.mq;
-
-public record constQueue() {
-
-}
