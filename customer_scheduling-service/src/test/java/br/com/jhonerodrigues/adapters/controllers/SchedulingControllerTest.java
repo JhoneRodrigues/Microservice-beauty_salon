@@ -85,7 +85,7 @@ class SchedulingControllerTest {
 	}
 
 	private void startUser() {
-		dto = new SchedulingDTO(ID, DAY, TIME, PROF_ID, null);
+		dto = new SchedulingDTO(ID, DAY, TIME, PROF_ID, 1L, null);
 		request = new SchedulingRequest(DAY, TIME, PROF_ID, null);
 	}
 }

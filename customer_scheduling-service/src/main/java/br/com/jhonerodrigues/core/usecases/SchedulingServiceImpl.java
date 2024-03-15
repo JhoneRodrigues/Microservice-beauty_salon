@@ -56,7 +56,7 @@ public class SchedulingServiceImpl implements SchedulingService{
 			jobs.add(job);
 		}
 		
-		var scheduling = new Scheduling(request);
+		var scheduling = new Scheduling(id, request);
 		scheduling.setJobs(jobs);
 		
 		

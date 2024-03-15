@@ -35,6 +35,7 @@ public class Scheduling {
 	private LocalDate col_day;
 	private StandardTimes col_time;
 	private Long professional_id;
+	private Long client_id;
 	
 	@ManyToMany (fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_schedulings_jobs", 
@@ -42,17 +43,18 @@ public class Scheduling {
 	inverseJoinColumns = @JoinColumn(name = "job_id"))
 	private Set <Job> jobs = new HashSet<>();
 
-	public Scheduling(Long id, LocalDate day, StandardTimes time, Long professionalId) {
-		super();
+	public Scheduling(Long id, LocalDate day, StandardTimes time, Long professionalId, Long client_id) {
 		this.id = id;
 		this.col_day = day;
 		this.col_time = time;
 		this.professional_id = professionalId;
+		this.client_id = client_id;
 	}
 	
-	public Scheduling (SchedulingRequest request) {
+	public Scheduling (Long id, SchedulingRequest request) {
 		this.col_day = request.getDay();
 		this.col_time = request.getTime();
 		this.professional_id = request.getProfessional_id();
+		this.client_id = id;
 	}
 }
