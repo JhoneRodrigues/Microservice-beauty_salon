@@ -1,0 +1,12 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:16.2-alpine
+    restart: always
+    container_name: postgres
+    ports:
+      - 5433:5432
+    volumes:
+      - ./dadosPostgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres

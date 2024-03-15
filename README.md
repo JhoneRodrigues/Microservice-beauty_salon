@@ -24,4 +24,3 @@ Este projeto esta em desenvolvimento para fins didáticos, estudando a arquitetu
 <a href="https://www.linkedin.com/in/jhonerodrigues/" target="_blank">
 <img src="https://img.shields.io/badge/linkedin:  jhone rodrigues-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white" alt=linkedin style="margin-bottom: 5px;"/>
 </a>
-
