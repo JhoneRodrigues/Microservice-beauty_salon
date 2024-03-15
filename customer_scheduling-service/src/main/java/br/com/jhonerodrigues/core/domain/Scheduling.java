@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.jhonerodrigues.core.domain.enums.StandardTimes;
 import br.com.jhonerodrigues.core.requests.SchedulingRequest;
 import jakarta.persistence.Entity;
@@ -35,6 +37,8 @@ public class Scheduling {
 	private LocalDate col_day;
 	private StandardTimes col_time;
 	private Long professional_id;
+	
+	@JsonIgnore
 	private Long client_id;
 	
 	@ManyToMany (fetch = FetchType.EAGER)
@@ -56,5 +60,9 @@ public class Scheduling {
 		this.col_time = request.getTime();
 		this.professional_id = request.getProfessional_id();
 		this.client_id = id;
+	}
+	
+	public Double getTotal() {
+		return jobs.stream().mapToDouble(Job::getPrice).sum();
 	}
 }
