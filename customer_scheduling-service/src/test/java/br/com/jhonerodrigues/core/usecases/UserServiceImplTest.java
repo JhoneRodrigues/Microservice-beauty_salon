@@ -7,7 +7,6 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import br.com.jhonerodrigues.ConstsVar;
 import br.com.jhonerodrigues.adapters.gateways.UserRepository;
 import br.com.jhonerodrigues.core.DTO.UserDTO;
 import br.com.jhonerodrigues.core.domain.User;
@@ -27,23 +27,18 @@ import br.com.jhonerodrigues.core.requests.UserRequest;
 
 @SpringBootTest
 class UserServiceImplTest {
-	
-	private static final String PHONE = "11 90001-0002";
-	private static final LocalDate BIRTHDAY = LocalDate.parse("2000-01-02");
-	private static final String NAME = "Duratestelson de Melo";
-	private static final long ID = 1L;
 
 	@InjectMocks
 	private UserServiceImpl service;
 
 	@Mock
 	private UserRepository repository;
-	
+
 	private User user;
 	private UserDTO userDTO;
 	private UserRequest userRequest;
 	private Optional<User> optionalUser;
-	
+
 	@BeforeEach
 	void setUp() {
 		MockitoAnnotations.openMocks(this);
@@ -54,25 +49,25 @@ class UserServiceImplTest {
 	void whenFindByIdThenReturnAnUserInstance() {
 		when(repository.findById(anyLong())).thenReturn(user);
 		
-		UserDTO response = service.findById(ID);
+		UserDTO response = service.findById(ConstsVar.CLIENT_ID);
 		
 		assertNotNull(response);
 		assertEquals(UserDTO.class, response.getClass());
-		assertEquals(ID, response.getId());
-		assertEquals(PHONE, response.getPhone());
+		assertEquals(ConstsVar.CLIENT_ID, response.getId());
+		assertEquals(ConstsVar.CLIENT_PHONE, response.getPhone());
 	}
-	
+
 	@Test
 	void whenFindByIdThenReturnAnResourceNotFoundException() {
-		when(repository.findById(anyLong())).thenThrow(new ResourceNotFoundException(ID));
+		when(repository.findById(anyLong())).thenThrow(new ResourceNotFoundException(ConstsVar.CLIENT_ID));
 		
 		try {
-			service.findById(ID);
+			service.findById(ConstsVar.CLIENT_ID);
 		} catch(Exception ex) {
 			assertEquals(ResourceNotFoundException.class, ex.getClass());
 		}
 	}
-	
+
 	@Test
 	void FindAllThenReturnAnListOfUsersDTO() {
 		when(repository.findAll()).thenReturn(List.of(user));
@@ -82,7 +77,7 @@ class UserServiceImplTest {
 		assertNotNull(response);
 		assertEquals(1, response.size());
 		assertEquals(UserDTO.class, response.get(0).getClass());
-		assertEquals(PHONE, response.get(0).getPhone());
+		assertEquals(ConstsVar.CLIENT_PHONE, response.get(0).getPhone());
 	}
 
 	@Test
@@ -93,16 +88,16 @@ class UserServiceImplTest {
 		
 		assertNotNull(response);
 		assertEquals(UserDTO.class, response.getClass());
-		assertEquals(ID, response.getId());
-		assertEquals(PHONE, response.getPhone());
+		assertEquals(ConstsVar.CLIENT_ID, response.getId());
+		assertEquals(ConstsVar.CLIENT_PHONE, response.getPhone());
 	}
-	
+
 	@Test
 	void InsertThenReturnAnDataIntegrityViolationException() {
 		when(repository.findByPhone(anyString())).thenReturn(optionalUser);
 		
 		try {
-			optionalUser.get().setId(2L);
+			optionalUser.get().setId(anyLong());
 			service.insert(userRequest);
 		} catch(Exception ex) {
 			assertEquals(DataIntegratyViolationException.class, ex.getClass());
@@ -113,39 +108,31 @@ class UserServiceImplTest {
 	void UpdateThenReturnSuccess() {
 		when(repository.update(anyLong(),any())).thenReturn(user);
 		
-		UserDTO response = service.update(ID,user);
+		UserDTO response = service.update(ConstsVar.CLIENT_ID,user);
 		
 		assertNotNull(response);
 		assertEquals(UserDTO.class, response.getClass());
-		assertEquals(ID, response.getId());
-		assertEquals(PHONE, response.getPhone());
+		assertEquals(ConstsVar.CLIENT_ID, response.getId());
+		assertEquals(ConstsVar.CLIENT_PHONE, response.getPhone());
 	}
-	
+
 	@Test
 	void UpdateThenReturnAnDataIntegrityViolationException() {
 		when(repository.findByPhone(anyString())).thenReturn(optionalUser);
 		
 		try {
-			optionalUser.get().setId(2L);
-			service.update(ID,user);
+			optionalUser.get().setId(anyLong());
+			service.update(ConstsVar.CLIENT_ID,user);
 		} catch(Exception ex) {
 			assertEquals(DataIntegratyViolationException.class, ex.getClass());
 		}
 	}
-	
+
 	private void startUser() {
-		user = new User(ID , NAME, BIRTHDAY, PHONE);
-		userDTO = new UserDTO(ID , NAME, BIRTHDAY, PHONE);
-		userRequest = new UserRequest(NAME, BIRTHDAY, PHONE);
-		optionalUser = Optional.of(new User(ID , NAME, BIRTHDAY, PHONE));
+		user = new User(ConstsVar.CLIENT_ID, ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY, ConstsVar.CLIENT_PHONE);
+		userDTO = new UserDTO(user);
+		userRequest = new UserRequest(ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY, ConstsVar.CLIENT_PHONE);
+		optionalUser = Optional.of(new User(ConstsVar.CLIENT_ID, ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY,
+				ConstsVar.CLIENT_PHONE));
 	}
 }
-
-
-
-
-
-
-
-
-

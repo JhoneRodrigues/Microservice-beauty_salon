@@ -15,14 +15,13 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
+import br.com.jhonerodrigues.ConstsVar;
 import br.com.jhonerodrigues.core.DTO.JobDTO;
 import br.com.jhonerodrigues.core.exceptions.ResourceNotFoundException;
 import br.com.jhonerodrigues.core.usecases.JobService;
 
 @SpringBootTest
 class JobControllerTest {
-	
-	private static final long ID = 1L;
 
 	@InjectMocks
 	private JobController controller;
@@ -54,26 +53,26 @@ class JobControllerTest {
 	void FindByIdThenReturnAnJobDTO() {
 		when(service.findById(anyLong())).thenReturn(dto);
 		
-		ResponseEntity<JobDTO> response = controller.findById(ID);
+		ResponseEntity<JobDTO> response = controller.findById(ConstsVar.JOB_ID);
 		
 		assertNotNull(response);
 		assertEquals(JobDTO.class, response.getBody().getClass());
-		assertEquals(dto.getId(), ID);
+		assertEquals(dto.getId(), ConstsVar.JOB_ID);
 		assertEquals(dto.getName(), response.getBody().getName());
 	}
 	
 	@Test
 	void FindByIdThenReturnAnResourceNotFoundException() {
-		when(service.findById(anyLong())).thenThrow(new ResourceNotFoundException(ID));
+		when(service.findById(anyLong())).thenThrow(new ResourceNotFoundException(ConstsVar.JOB_ID));
 		
 		try {
-			controller.findById(ID);
+			controller.findById(ConstsVar.JOB_ID);
 		} catch (Exception e){
 			assertEquals(ResourceNotFoundException.class, e.getClass());
 		}
 	}
 
 	private void startUser() {
-		dto = new JobDTO(ID, "Corte", 30.00, 40);
+		dto = new JobDTO(ConstsVar.JOB_ID, ConstsVar.JOB_NAME, ConstsVar.JOB_PRICE, ConstsVar.JOB_DURATION);
 	}
 }
