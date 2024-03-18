@@ -1,6 +1,7 @@
 package br.com.jhonerodrigues.core.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -41,7 +42,7 @@ public class User {
 	
 	@OneToMany (fetch = FetchType.EAGER)
 	@JoinColumn(name = "client_id")	
-	private List <Scheduling> schedulings;
+	private List <Scheduling> schedulings = new ArrayList<>();
 
 	public User(Long id, String name, LocalDate birthday, String phone) {
 		this.id = id;
