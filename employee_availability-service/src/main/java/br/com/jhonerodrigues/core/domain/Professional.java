@@ -1,5 +1,6 @@
 package br.com.jhonerodrigues.core.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
@@ -35,7 +36,7 @@ public class Professional {
 	
 	@OneToMany (fetch = FetchType.EAGER)
 	@JoinColumn(name = "professional_id")
-	private Set <Scheduling> schedulings;
+	private Set <Scheduling> schedulings = new HashSet<>();
 
 	public Professional(Long id, String name, String urlImage, String description) {
 		super();

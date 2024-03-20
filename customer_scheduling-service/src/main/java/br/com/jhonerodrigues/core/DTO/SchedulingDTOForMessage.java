@@ -14,7 +14,7 @@ public class SchedulingDTOForMessage {
 	
 	private LocalDate col_day;
 	private StandardTimes col_time;
-	private String client_phone;
+	private String client_email;
 	private String client_name;
 	private Long professional_id;
 }

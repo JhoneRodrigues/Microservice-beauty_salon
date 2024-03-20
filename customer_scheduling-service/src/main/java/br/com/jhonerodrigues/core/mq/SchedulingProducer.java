@@ -19,7 +19,7 @@ public class SchedulingProducer {
 	public void sendScheduling(User user, Scheduling scheduling) {
 		var schedulingDTO = new SchedulingDTOForMessage();
 		schedulingDTO.setClient_name(user.getName());
-		schedulingDTO.setClient_phone(user.getPhone());
+		schedulingDTO.setClient_email(user.getEmail());
 		schedulingDTO.setCol_day(scheduling.getCol_day());
 		schedulingDTO.setCol_time(scheduling.getCol_time());
 		schedulingDTO.setProfessional_id(scheduling.getProfessional_id());
