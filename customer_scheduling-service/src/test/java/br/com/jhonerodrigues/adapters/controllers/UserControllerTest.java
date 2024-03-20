@@ -75,7 +75,9 @@ class UserControllerTest {
 	}
 	
 	private void startUser() {
-		dto = new UserDTO(ConstsVar.CLIENT_ID, ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY, ConstsVar.CLIENT_PHONE);
-		request = new UserRequest(ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY, ConstsVar.CLIENT_PHONE);
+		dto = new UserDTO(ConstsVar.CLIENT_ID, ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY,
+				ConstsVar.CLIENT_PHONE, ConstsVar.CLIENT_EMAIL);
+		request = new UserRequest(ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY, ConstsVar.CLIENT_PHONE, 
+				ConstsVar.CLIENT_EMAIL);
 	}
 }

@@ -16,5 +16,5 @@ public class UserRequest {
 	private String name;
 	private LocalDate birthday;
 	private String phone;
-
+	private String email;
 }

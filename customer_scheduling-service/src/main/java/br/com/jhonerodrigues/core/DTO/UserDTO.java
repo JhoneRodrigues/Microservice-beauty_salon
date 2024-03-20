@@ -21,14 +21,15 @@ public class UserDTO {
 	private String name;
 	private LocalDate birthday;
 	private String phone;
+	private String email;
 	private List<Scheduling> schedulings = new ArrayList<>(); 
 	
-	public UserDTO(Long id, String name, LocalDate birthday, String phone) {
-		super();
+	public UserDTO(Long id, String name, LocalDate birthday, String phone, String email) {
 		this.id = id;
 		this.name = name;
 		this.birthday = birthday;
 		this.phone = phone;
+		this.email = email;
 	}
 	
 	public UserDTO(User domain) {

@@ -10,6 +10,7 @@ public class ConstsVar {
 	public static final Long CLIENT_ID = 2L;
 	public static final String CLIENT_PHONE = "(00) 90001-0002";
 	public static final String CLIENT_NAME = "Gerson";
+	public static final String CLIENT_EMAIL = "gerson@gmail.com";
 	public static final LocalDate CLIENT_BIRTHDAY = LocalDate.parse("2000-02-02");
 
 	// job

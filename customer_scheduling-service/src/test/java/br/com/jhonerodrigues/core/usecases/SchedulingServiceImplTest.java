@@ -134,7 +134,8 @@ class SchedulingServiceImplTest {
 				ConstsVar.SCHEDULING_PROF_ID, null);
 		schedulingRequest.setJobs(Arrays.asList(jobId));
 
-		user = new User(ConstsVar.CLIENT_ID, ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY, ConstsVar.CLIENT_PHONE);
+		user = new User(ConstsVar.CLIENT_ID, ConstsVar.CLIENT_NAME, ConstsVar.CLIENT_BIRTHDAY, ConstsVar.CLIENT_PHONE,
+				ConstsVar.CLIENT_EMAIL);
 		userDTO = new UserDTO(user);
 	}
 }

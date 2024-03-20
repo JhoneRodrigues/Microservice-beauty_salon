@@ -39,16 +39,18 @@ public class User {
 	
 	@Column(unique = true)
 	private String phone;
+	private String email;
 	
 	@OneToMany (fetch = FetchType.EAGER)
 	@JoinColumn(name = "client_id")	
 	private List <Scheduling> schedulings = new ArrayList<>();
 
-	public User(Long id, String name, LocalDate birthday, String phone) {
+	public User(Long id, String name, LocalDate birthday, String phone, String email) {
 		this.id = id;
 		this.name = name;
 		this.birthday = birthday;
 		this.phone = phone;
+		this.email = email;
 	}	
 	
 	public User (UserRequest request) {
